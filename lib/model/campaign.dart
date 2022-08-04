@@ -6,13 +6,14 @@ class Campaign{
      this.campaignId,
     this.campaingTitle,
    this.campaignDiscrepcion,
-    this.campaignPhoto});
+    this.campaignPhoto
+  });
 
   factory Campaign.fromJSON(Map<String, dynamic> json) {
     return Campaign(
         campaignId: json['campaignId'].toString(),
-        campaingTitle: json['campaingTitle,'].toString(),
-        campaignDiscrepcion: json['campaignDiscrepcion'],
-        campaignPhoto: json['campaignPhoto']);
+        campaingTitle: json['campaingTitle'].toString(),
+        campaignDiscrepcion: json['campaignDiscrepcion'].toString(),
+        campaignPhoto: json['campaignPhoto'].toString());
   }
 }
