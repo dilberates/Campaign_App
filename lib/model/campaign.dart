@@ -3,10 +3,10 @@ class Campaign{
   final String campaignId, campaingTitle, campaignDiscrepcion, campaignPhoto;
 
   Campaign({
-    required this.campaignId,
-    required this.campaingTitle,
-    required this.campaignDiscrepcion,
-    required this.campaignPhoto});
+     this.campaignId,
+    this.campaingTitle,
+   this.campaignDiscrepcion,
+    this.campaignPhoto});
 
   factory Campaign.fromJSON(Map<String, dynamic> json) {
     return Campaign(
