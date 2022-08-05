@@ -5,10 +5,11 @@ import '../model/campaign.dart';
 import '../store/campaign_store.dart';
 
 
+// ignore: must_be_immutable
 class CampaignList extends StatefulWidget {
   CampaignStore _store = CampaignStore();
   CampaignList() {
-    _store.fetchCampaigns();
+    _store.fetchCampaign();
   }
 
   @override
@@ -31,8 +32,7 @@ class _CampaignListState extends State<CampaignList> {
           case FutureStatus.fulfilled:
             final List<Campaign> campaigns = future.result;
             print(campaigns);
-            return _loadUsers(campaigns,_refresh);
-
+            return _loadCampaigns(campaigns,_refresh);
 
           case FutureStatus.rejected:
             return _failed(_refresh);
@@ -42,7 +42,7 @@ class _CampaignListState extends State<CampaignList> {
     );
   }
 
-  Future _refresh() => widget._store.fetchCampaigns();
+  Future _refresh() => widget._store.fetchCampaign();
 }
 
 
@@ -90,10 +90,10 @@ class _failed extends StatelessWidget {
 }
 
 
-class _loadUsers extends StatelessWidget {
+class _loadCampaigns extends StatelessWidget {
   final List<Campaign> campaigns;
   final Future Function() refresh;
-  const _loadUsers(this.campaigns, this.refresh, {
+  const _loadCampaigns(this.campaigns, this.refresh, {
     Key key,
   }) : super(key: key);
 
@@ -106,15 +106,15 @@ class _loadUsers extends StatelessWidget {
         itemCount: campaigns.length,
         itemBuilder: (context, index) {
           final campaign = campaigns[index];
-          return userCard(campaign: campaign);
+          return campaignCard(campaign: campaign);
         },
       ),
     );
   }
 }
 
-class userCard extends StatelessWidget {
-  const userCard({
+class campaignCard extends StatelessWidget {
+  const campaignCard({
     Key key,
     @required this.campaign,
   }) : super(key: key);
