@@ -13,7 +13,7 @@ abstract class _CampaignStore with Store{
   
   @action
   Future fetchCampaign()  {
-    campaignListFuture=  ObservableFuture(httpClient.getData("https://gist.githubusercontent.com/dilberkilic/7bab6b3c8dd7911ed21be92b7ed44004/raw/f3eea58803134aa1134e3e4c7cf2abfe24fa6f6a/campaign.json").then((campaign) => campaign));
+    campaignListFuture=  ObservableFuture(httpClient.getData("https://gist.githubusercontent.com/dilberkilic/7bab6b3c8dd7911ed21be92b7ed44004/raw/5a5f0f38cc2c43c64fa60e4a16b135db9c09630b/campaign.json").then((campaign) => campaign));
   }
   
 }
