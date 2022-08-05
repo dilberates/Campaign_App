@@ -1,21 +1,19 @@
+import 'package:kampanya/Service/network_service.dart';
+import 'package:kampanya/model/campaign.dart';
 import 'package:mobx/mobx.dart';
-import '../model/campaign.dart';
-import '../Service/network_service.dart';
 
 part 'campaign_store.g.dart';
 
-class UserStore = _UserStore with _$UserStore;
-
-abstract class _UserStore with Store {
-  final NetworkService httpClient = NetworkService();
-
+class CampaignStore=_CampaignStore with _$CampaignStore;
+abstract class _CampaignStore with Store{
+  final NetworkService httpClient=NetworkService();
+  
   @observable
-  ObservableFuture<List<Campaign>> userListFuture;
-
+  ObservableFuture<List<Campaign>> campaignListFuture;
+  
   @action
-  Future fetchUsers(){
-    userListFuture = ObservableFuture(httpClient
-        .getData("ccccccc")
-        .then((users) => users));
+  Future fetchCampaign()  {
+    campaignListFuture=  ObservableFuture(httpClient.getData("https://gist.githubusercontent.com/dilberkilic/7bab6b3c8dd7911ed21be92b7ed44004/raw/f3eea58803134aa1134e3e4c7cf2abfe24fa6f6a/campaign.json").then((campaign) => campaign));
   }
+  
 }
