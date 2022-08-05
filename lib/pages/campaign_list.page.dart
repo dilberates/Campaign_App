@@ -124,48 +124,42 @@ class campaignCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Center(
-      child: Card(
-        child:DecoratedBox(
-          decoration: cardDecoration(),
-          child: InkWell(
-            onTap: (){
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 300,
-                  height: 300,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                       Image.network(campaign.campaignPhoto,
-                       fit: BoxFit.cover,),
-                    ],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Card(
+            child: InkWell(
+              onTap: (){
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                     Stack(
+                      alignment: Alignment.center,
+                      children: [
+                         Image.network(campaign.campaignPhoto,
+                         fit: BoxFit.fitWidth),
+                      ],
                   ),
-                ),
-                Padding(padding: const EdgeInsets.all(8),
-                child:Container(
-                  width: 300,
-                  height: 200,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children:<Widget> [
-                    Text(campaign.campaingTitle, style:Theme.of(context).textTheme.headline6,
-                    ),
-                    Text(campaign.campaignDiscrepcion, style:Theme.of(context).textTheme.bodyText1 ,
-                        overflow: TextOverflow.ellipsis,
+                  Padding(padding: const EdgeInsets.all(8),
+                  child:Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children:<Widget> [
+                      Text(campaign.campaingTitle, style:Theme.of(context).textTheme.headline6,
                       ),
-                    ],
+                      Text(campaign.campaignDiscrepcion, style:Theme.of(context).textTheme.bodyText1 ,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ) ,
                   ),
-                ) ,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 
