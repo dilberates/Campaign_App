@@ -123,27 +123,68 @@ class campaignCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: ListTile(
-        leading: Image.network(campaign.campaignPhoto),
-        title: Text(
-          campaign.campaingTitle,
-          style:Theme.of(context).textTheme.headline5,
+    return Center(
+      child: Card(
+        child:DecoratedBox(
+          decoration: cardDecoration(),
+          child: InkWell(
+            onTap: (){
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300,
+                  height: 300,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                       Image.network(campaign.campaignPhoto,
+                       fit: BoxFit.cover,),
+                    ],
+                  ),
+                ),
+                Padding(padding: const EdgeInsets.all(8),
+                child:Container(
+                  width: 300,
+                  height: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children:<Widget> [
+                    Text(campaign.campaingTitle, style:Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(campaign.campaignDiscrepcion, style:Theme.of(context).textTheme.bodyText1 ,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ) ,
+                ),
+              ],
+            ),
+          ),
         ),
-        subtitle: Text(
-           campaign.campaignDiscrepcion,
-            style:Theme.of(context).textTheme.bodyText1
-        ),
-        onTap: () {
-          /*Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => PostsList(user.id),
-          ));*/
-        },
-        //trailing: Icon(Icons.person),
       ),
     );
   }
+
+  BoxDecoration cardDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+          boxShadow:[
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 2,
+              offset: Offset(4, 8), // changes position of shadow
+            ),
+          ],
+          gradient: LinearGradient(
+             begin: Alignment.centerLeft,
+             end: Alignment.centerRight,
+             colors: [Colors.amberAccent[100], Colors.lightBlueAccent])
+          );
+
+  }
 }
+
