@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 import '../constants.dart';
 
-class DetailCampaign extends StatelessWidget {
+class DetailCampaign extends StatefulWidget {
   final id;
   final String campaingTitle, campaignDiscrepcion, campaignPhoto;
   const DetailCampaign(this.id,
@@ -13,7 +14,24 @@ class DetailCampaign extends StatelessWidget {
       {Key key}) : super(key: key);
 
   @override
+  State<DetailCampaign> createState() => _DetailCampaignState();
+
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: 'Example share text',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title'
+    );
+  }
+
+}
+
+class _DetailCampaignState extends State<DetailCampaign> {
+
+  @override
   Widget build(BuildContext context) {
+    bool love=youLove(widget.id);
     return Scaffold(
       appBar: AppBar(
         title:Text(MyConstans.appBarText),
@@ -22,12 +40,12 @@ class DetailCampaign extends StatelessWidget {
         padding: const EdgeInsets.all(20),
           child:Column(
             children: [
-             Image.network(campaignPhoto,
+             Image.network(widget.campaignPhoto,
              fit: BoxFit.cover,
              ),
               SizedBox(height: 20,),
               Expanded(
-                child: Text(campaingTitle,
+                child: Text(widget.campaingTitle,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -38,7 +56,7 @@ class DetailCampaign extends StatelessWidget {
               SizedBox(height: 20,),
              Expanded(
                child: Text(
-                  campaignDiscrepcion,
+                  widget.campaignDiscrepcion,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -52,20 +70,25 @@ class DetailCampaign extends StatelessWidget {
                   children: [
                     Expanded(
                       child: IconButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            widget.share();
+                          },
                           icon: Icon(
                             Icons.share,
                             color: Colors.green,
                           )
                       ),
                     ),
+
                     Expanded(
                       child: IconButton(
-                          onPressed: (){},
-                          icon: Icon(
-                            Icons.favorite_border,
-                            color: Colors.red,
-                          )
+                          onPressed:() {
+                            setState((){
+                             favorite(widget.id, !love) ;
+                            });
+                          },
+                          icon: Icon( love ? Icons.favorite : Icons.favorite_border),
+                          color: Colors.red,
                       ),
                     )
                   ],
@@ -76,4 +99,16 @@ class DetailCampaign extends StatelessWidget {
       ),
     );;
   }
+}
+
+final fav=[];
+void favorite(String id, bool boolLove) {
+  if(boolLove) {
+    fav.add(id);
+  }else{
+    fav.remove(id);
+  }
+}
+bool youLove(id) {
+  return fav.contains(id);
 }

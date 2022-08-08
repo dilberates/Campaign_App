@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../model/campaign.dart';
-import '../pages/deatilPage.dart';
+import '../pages/detailPage.dart';
 
 class campaignCard extends StatelessWidget {
   const campaignCard({
