@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import '../model/campaign.dart';
 import '../store/campaign_store.dart';
+import 'campaignCard.dart';
 
 
 // ignore: must_be_immutable
@@ -113,72 +114,5 @@ class _loadCampaigns extends StatelessWidget {
   }
 }
 
-class campaignCard extends StatelessWidget {
-  const campaignCard({
-    Key key,
-    @required this.campaign,
-  }) : super(key: key);
 
-  final Campaign campaign;
-  @override
-  Widget build(BuildContext context) {
-
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Card(
-            child: InkWell(
-              onTap: (){
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                     Stack(
-                      alignment: Alignment.center,
-                      children: [
-                         Image.network(campaign.campaignPhoto,
-                         fit: BoxFit.fitWidth),
-                      ],
-                  ),
-                  Padding(padding: const EdgeInsets.all(8),
-                  child:Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children:<Widget> [
-                      Text(campaign.campaingTitle, style:Theme.of(context).textTheme.headline6,
-                      ),
-                      Text(campaign.campaignDiscrepcion, style:Theme.of(context).textTheme.bodyText1 ,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ) ,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-    );
-  }
-
-  BoxDecoration cardDecoration() {
-    return BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
-          boxShadow:[
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 2,
-              offset: Offset(4, 8), // changes position of shadow
-            ),
-          ],
-          gradient: LinearGradient(
-             begin: Alignment.centerLeft,
-             end: Alignment.centerRight,
-             colors: [Colors.amberAccent[100], Colors.lightBlueAccent])
-          );
-
-  }
-}
 

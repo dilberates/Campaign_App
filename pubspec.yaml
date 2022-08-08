@@ -23,6 +23,7 @@ dependencies:
   mobx:
   flutter_mobx:
   http:
+  getwidget: ^3.0.1
 
 dev_dependencies:
   build_runner:
