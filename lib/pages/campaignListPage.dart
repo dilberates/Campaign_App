@@ -13,6 +13,7 @@ class CampaignList extends StatefulWidget {
     _store.fetchCampaign();
   }
 
+
   @override
   State<CampaignList> createState() => _CampaignListState();
 }
