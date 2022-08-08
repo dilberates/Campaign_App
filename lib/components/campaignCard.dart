@@ -14,9 +14,7 @@ class campaignCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: InkWell(
+    return InkWell(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => DetailCampaign(campaign.campaignId,
@@ -53,7 +51,6 @@ class campaignCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

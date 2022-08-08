@@ -43,7 +43,6 @@ class _DetailCampaignState extends State<DetailCampaign> {
              Image.network(widget.campaignPhoto,
              fit: BoxFit.cover,
              ),
-              SizedBox(height: 20,),
               Expanded(
                 child: Text(widget.campaingTitle,
                   style: Theme
@@ -53,7 +52,6 @@ class _DetailCampaignState extends State<DetailCampaign> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 20,),
              Expanded(
                child: Text(
                   widget.campaignDiscrepcion,
@@ -63,7 +61,6 @@ class _DetailCampaignState extends State<DetailCampaign> {
                       .bodyText1,
                 ),
              ),
-              SizedBox(height: 15,),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
