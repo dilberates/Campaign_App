@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../model/campaign.dart';
+import '../pages/deatilPage.dart';
 
 class campaignCard extends StatelessWidget {
   const campaignCard({
@@ -17,7 +18,12 @@ class campaignCard extends StatelessWidget {
 
       child: InkWell(
         onTap: () {
-
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => DetailCampaign(campaign.campaignId,
+                campaign.campaingTitle,
+                campaign.campaignDiscrepcion,
+                campaign.campaignPhoto,
+              )));
         },
         child: GFCard(
           elevation: 20,

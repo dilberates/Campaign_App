@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kampanya/pages/HomePage.dart';
-import 'package:kampanya/pages/constants.dart';
+import 'package:kampanya/constants.dart';
 
 void main() {
   runApp(const MyApp());

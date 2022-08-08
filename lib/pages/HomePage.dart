@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kampanya/pages/campaign_list.page.dart';
-import 'package:kampanya/pages/constants.dart';
+import 'package:kampanya/pages/campaignListPage.dart';
+import 'package:kampanya/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override

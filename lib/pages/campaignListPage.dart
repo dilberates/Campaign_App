@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import '../model/campaign.dart';
 import '../store/campaign_store.dart';
-import 'campaignCard.dart';
+import '../components/campaignCard.dart';
 
 
 // ignore: must_be_immutable
