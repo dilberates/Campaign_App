@@ -26,21 +26,25 @@ class DetailCampaign extends StatelessWidget {
              fit: BoxFit.cover,
              ),
               SizedBox(height: 20,),
-              Text(campaingTitle,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline5,
-                textAlign: TextAlign.center,
+              Expanded(
+                child: Text(campaingTitle,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline5,
+                  textAlign: TextAlign.center,
+                ),
               ),
-              SizedBox(height: 30,),
-             Text(
-                campaignDiscrepcion,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .bodyText1,
-              ),
+              SizedBox(height: 20,),
+             Expanded(
+               child: Text(
+                  campaignDiscrepcion,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyText1,
+                ),
+             ),
               SizedBox(height: 15,),
               Container(
                 child: Row(
