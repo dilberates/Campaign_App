@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import '../model/campaign.dart';
 import '../store/campaign_store.dart';
+import 'campaignCard.dart';
 
 
 // ignore: must_be_immutable
@@ -113,37 +114,5 @@ class _loadCampaigns extends StatelessWidget {
   }
 }
 
-class campaignCard extends StatelessWidget {
-  const campaignCard({
-    Key key,
-    @required this.campaign,
-  }) : super(key: key);
 
-  final Campaign campaign;
-  @override
-  Widget build(BuildContext context) {
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: ListTile(
-        leading: Image.network(campaign.campaignPhoto),
-        title: Text(
-          campaign.campaingTitle,
-          style:Theme.of(context).textTheme.headline5,
-        ),
-        subtitle: Text(
-           campaign.campaignDiscrepcion,
-            style:Theme.of(context).textTheme.bodyText1
-        ),
-        onTap: () {
-          /*Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => PostsList(user.id),
-          ));*/
-        },
-        //trailing: Icon(Icons.person),
-      ),
-    );
-  }
-}
