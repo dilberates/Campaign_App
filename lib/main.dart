@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kampanya/pages/HomePage.dart';
 import 'package:kampanya/constants.dart';
 
@@ -13,8 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: MyConstans.mainTitle,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+      debugShowMaterialGrid: false,
+      theme: ThemeData.dark().copyWith(
+       appBarTheme: AppBarTheme(
+         centerTitle: true,
+         systemOverlayStyle: SystemUiOverlayStyle.light,
+         backgroundColor: Colors.transparent
+       ),
       ),
       home: HomePage(),
     );
