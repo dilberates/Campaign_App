@@ -36,63 +36,64 @@ class _DetailCampaignState extends State<DetailCampaign> {
       appBar: AppBar(
         title:Text(MyConstans.appBarText),
       ),
-      body:Container(
-        padding: const EdgeInsets.all(20),
-          child:Column(
-            children: [
-             Image.network(widget.campaignPhoto,
-             fit: BoxFit.cover,
-             ),
-              Expanded(
-                child: Text(widget.campaingTitle,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .headline5,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-             Expanded(
-               child: Text(
-                  widget.campaignDiscrepcion,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyText1,
-                ),
-             ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: IconButton(
-                          onPressed: (){
-                            widget.share();
-                          },
-                          icon: Icon(
-                            Icons.share,
-                            color: Colors.green,
-                          )
+      body:SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+            child:Column(
+              children: [
+               Image.network(widget.campaignPhoto,
+               fit: BoxFit.cover,
+               ),
+                SizedBox(height: 50,),
+                Text(widget.campaingTitle,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .headline5,
+                    textAlign: TextAlign.center,
+                  ),
+                SizedBox(height: 50,),
+              Text(
+                    widget.campaignDiscrepcion,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1,
+               ),
+                SizedBox(height: 50,),
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: IconButton(
+                            onPressed: (){
+                              widget.share();
+                            },
+                            icon: Icon(
+                              Icons.share,
+                              color: Colors.green,
+                            )
+                        ),
                       ),
-                    ),
 
-                    Expanded(
-                      child: IconButton(
-                          onPressed:() {
-                            setState((){
-                             favorite(widget.id, !love) ;
-                            });
-                          },
-                          icon: Icon( love ? Icons.favorite : Icons.favorite_border),
-                          color: Colors.red,
-                      ),
-                    )
-                  ],
+                      Expanded(
+                        child: IconButton(
+                            onPressed:() {
+                              setState((){
+                               favorite(widget.id, !love) ;
+                              });
+                            },
+                            icon: Icon( love ? Icons.favorite : Icons.favorite_border),
+                            color: Colors.red,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          )
+              ],
+            )
+        ),
       ),
     );;
   }
