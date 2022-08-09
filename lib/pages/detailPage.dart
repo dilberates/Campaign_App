@@ -42,7 +42,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
                padding: const EdgeInsets.all(20),
                child: Column(
                  children: [
-                   Text(widget.campaingTitle,
+                    Text(widget.campaingTitle,
                      style: Theme
                          .of(context)
                          .textTheme
