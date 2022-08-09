@@ -42,26 +42,14 @@ class _DetailCampaignState extends State<DetailCampaign> {
                padding: const EdgeInsets.all(20),
                child: Column(
                  children: [
-                    Text(widget.campaingTitle,
-                     style: Theme
-                         .of(context)
-                         .textTheme
-                         .headline5,
-                     textAlign: TextAlign.center,
-                   ),
+                    _titleWid(widget: widget),
                    EmptyBox(),
                    Image.network(
                      widget.campaignPhoto,
                      fit: BoxFit.fill,
                    ),
                    EmptyBox(),
-                   Text(
-                     widget.campaignDiscrepcion,
-                     style: Theme
-                         .of(context)
-                         .textTheme
-                         .bodyText1,
-                   ),
+                   _descWid(widget: widget),
                    EmptyBox(),
                    Container(
                      child: Row(
@@ -102,6 +90,46 @@ class _DetailCampaignState extends State<DetailCampaign> {
    }
 
    SizedBox EmptyBox() => SizedBox(height: 30,);
+}
+
+class _descWid extends StatelessWidget {
+  const _descWid({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final DetailCampaign widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      widget.campaignDiscrepcion,
+      style: Theme
+          .of(context)
+          .textTheme
+          .bodyText1,
+    );
+  }
+}
+
+class _titleWid extends StatelessWidget {
+  const _titleWid({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final DetailCampaign widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(widget.campaingTitle,
+     style: Theme
+         .of(context)
+         .textTheme
+         .headline5,
+     textAlign: TextAlign.center,
+                   );
+  }
 }
 
 
