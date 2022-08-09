@@ -18,10 +18,10 @@ class DetailCampaign extends StatefulWidget {
 
   Future<void> share() async {
     await FlutterShare.share(
-        title: 'Example share',
-        text: 'Example share text',
+        title:campaingTitle,
+        text: campaignDiscrepcion,
         linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Example Chooser Title'
+        chooserTitle: 'Paylaş'
     );
   }
 

@@ -23,34 +23,50 @@ class campaignCard extends StatelessWidget {
                 campaign.campaignPhoto,
               )));
         },
-        child: GFCard(
-          elevation: 20,
-          boxFit: BoxFit.cover,
-          image: Image.network(campaign.campaignPhoto,
-          ),
-          showImage: true,
-          title: GFListTile(
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Text(
-                campaign.campaingTitle,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline6,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            subTitle: Text(
-              campaign.campaignDiscrepcion,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyText1,
-              overflow: TextOverflow.ellipsis,
-            ),
+        child: cardView(campaign: campaign),
+    );
+  }
+}
+
+class cardView extends StatelessWidget {
+  const cardView({
+    Key key,
+    @required this.campaign,
+  }) : super(key: key);
+
+  final Campaign campaign;
+
+  @override
+  Widget build(BuildContext context) {
+    return GFCard(
+      padding: EdgeInsets.zero,
+      elevation: 20,
+      boxFit: BoxFit.cover,
+      image: Image.network(campaign.campaignPhoto,
+        fit: BoxFit.fill,
+      ),
+      showImage: true,
+      title: GFListTile(
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(
+            campaign.campaingTitle,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline6,
+            textAlign: TextAlign.center,
           ),
         ),
+        subTitle: Text(
+          campaign.campaignDiscrepcion,
+          style: Theme
+              .of(context)
+              .textTheme
+              .bodyText1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
     );
   }
 }
