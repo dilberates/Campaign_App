@@ -24,9 +24,6 @@ class _DetailCampaignState extends State<DetailCampaign> {
    Favorite favorite = Favorite();
    @override
    Widget build(BuildContext context) {
-     String url="https://www.isbank.com.tr/kampanyalar";
-     print("${widget.campaingTitle}\n ${widget.campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
-
      bool love = favorite.youLove(widget.id);
      return Scaffold(
          appBar: AppBar(
