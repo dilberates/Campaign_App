@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:kampanya/model/campaign.dart';
 import '../constants.dart';
@@ -18,22 +18,15 @@ class DetailCampaign extends StatefulWidget {
   @override
   State<DetailCampaign> createState() => _DetailCampaignState();
 
-  Future<void> share() async {
-    await FlutterShare.share(
-        title:campaingTitle,
-        text: campaignDiscrepcion,
-        linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Paylaş'
-    );
-  }
-
 }
 
 class _DetailCampaignState extends State<DetailCampaign> {
    Favorite favorite = Favorite();
-
    @override
    Widget build(BuildContext context) {
+     String url="https://www.isbank.com.tr/kampanyalar";
+     print("${widget.campaingTitle}\n ${widget.campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
+
      bool love = favorite.youLove(widget.id);
      return Scaffold(
          appBar: AppBar(
@@ -60,7 +53,8 @@ class _DetailCampaignState extends State<DetailCampaign> {
                          Expanded(
                            child: IconButton(
                                onPressed: () {
-                                 widget.share();
+                                 String url="https://www.isbank.com.tr/kampanyalar";
+                                 Share.share("${widget.campaingTitle}\n ${widget.campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
                                },
                                icon: Icon(
                                  Icons.share,
