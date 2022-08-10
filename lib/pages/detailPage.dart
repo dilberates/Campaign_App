@@ -1,7 +1,9 @@
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:kampanya/model/campaign.dart';
 import '../constants.dart';
 
 class DetailCampaign extends StatefulWidget {
@@ -42,26 +44,14 @@ class _DetailCampaignState extends State<DetailCampaign> {
                padding: const EdgeInsets.all(20),
                child: Column(
                  children: [
-                   Text(widget.campaingTitle,
-                     style: Theme
-                         .of(context)
-                         .textTheme
-                         .headline5,
-                     textAlign: TextAlign.center,
-                   ),
+                    _titleWid(widget: widget),
                    EmptyBox(),
                    Image.network(
                      widget.campaignPhoto,
                      fit: BoxFit.fill,
                    ),
                    EmptyBox(),
-                   Text(
-                     widget.campaignDiscrepcion,
-                     style: Theme
-                         .of(context)
-                         .textTheme
-                         .bodyText1,
-                   ),
+                   _descWid(widget: widget),
                    EmptyBox(),
                    Container(
                      child: Row(
@@ -84,6 +74,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
                              onPressed: () {
                                setState(() {
                                  favorite.favoriteCheck(widget.id, !love);
+                                 //createfav(widget.campaingTitle, widget.campaignDiscrepcion, widget.campaignPhoto);
                                });
                              },
                              icon: Icon(
@@ -104,6 +95,46 @@ class _DetailCampaignState extends State<DetailCampaign> {
    SizedBox EmptyBox() => SizedBox(height: 30,);
 }
 
+class _descWid extends StatelessWidget {
+  const _descWid({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final DetailCampaign widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      widget.campaignDiscrepcion,
+      style: Theme
+          .of(context)
+          .textTheme
+          .bodyText1,
+    );
+  }
+}
+
+class _titleWid extends StatelessWidget {
+  const _titleWid({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final DetailCampaign widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(widget.campaingTitle,
+     style: Theme
+         .of(context)
+         .textTheme
+         .headline5,
+     textAlign: TextAlign.center,
+                   );
+  }
+}
+
 
 class Favorite {
   final fav = [];
@@ -119,4 +150,26 @@ class Favorite {
   bool youLove(id) {
     return fav.contains(id);
   }
+}
+
+Future<Campaign> createfav(String title,String discr,String photo) async {
+  final response = await http.post(
+    Uri.parse('https://gist.githubusercontent.com/dilberkilic/0e3eef2630b327a81afd5c3234daa8a7/raw/9cd4f6fc9456e2ee9c611b85f4673b3ab2ee1e85/favorite.json'),
+    body: jsonEncode(<String, String>{
+      "campaingTitle":title,
+      "campaignDiscrepcion":discr,
+      "campaignPhoto":photo
+    }),
+  );
+  print("fgf");
+  if (response.statusCode == 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    return Campaign.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to create favorite.');
+  }
+
 }
