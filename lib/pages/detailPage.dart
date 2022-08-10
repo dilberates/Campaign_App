@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:kampanya/model/campaign.dart';
 import '../constants.dart';
@@ -18,20 +18,10 @@ class DetailCampaign extends StatefulWidget {
   @override
   State<DetailCampaign> createState() => _DetailCampaignState();
 
-  Future<void> share() async {
-    await FlutterShare.share(
-        title:campaingTitle,
-        text: campaignDiscrepcion,
-        linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Paylaş'
-    );
-  }
-
 }
 
 class _DetailCampaignState extends State<DetailCampaign> {
    Favorite favorite = Favorite();
-
    @override
    Widget build(BuildContext context) {
      bool love = favorite.youLove(widget.id);
@@ -55,32 +45,29 @@ class _DetailCampaignState extends State<DetailCampaign> {
                    EmptyBox(),
                    Container(
                      child: Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                        children: [
-                         Expanded(
-                           child: IconButton(
-                               onPressed: () {
-                                 widget.share();
-                               },
-                               icon: Icon(
-                                 Icons.share,
-                                 color: Colors.green,
-                               )
-                           ),
-                         ),
-
-                         Expanded(
-                           child: IconButton(
+                         IconButton(
                              onPressed: () {
-                               setState(() {
-                                 favorite.favoriteCheck(widget.id, !love);
-                                 //createfav(widget.campaingTitle, widget.campaignDiscrepcion, widget.campaignPhoto);
-                               });
+                               String url="https://www.isbank.com.tr/kampanyalar";
+                               Share.share("${widget.campaingTitle}\n ${widget.campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
                              },
                              icon: Icon(
-                                 love ? Icons.favorite : Icons.favorite_border),
-                             color: Colors.red,
-                           ),
+                               Icons.share,
+                               color: Colors.green,
+                             )
+                         ),
+
+                         IconButton(
+                           onPressed: () {
+                             setState(() {
+                               favorite.favoriteCheck(widget.id, !love);
+                               //createfav(widget.campaingTitle, widget.campaignDiscrepcion, widget.campaignPhoto);
+                             });
+                           },
+                           icon: Icon(
+                               love ? Icons.favorite : Icons.favorite_border),
+                           color: Colors.red,
                          )
                        ],
                      ),
