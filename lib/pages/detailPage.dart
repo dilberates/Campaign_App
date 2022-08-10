@@ -1,7 +1,9 @@
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:kampanya/model/campaign.dart';
 import '../constants.dart';
 
 class DetailCampaign extends StatefulWidget {
@@ -72,6 +74,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
                              onPressed: () {
                                setState(() {
                                  favorite.favoriteCheck(widget.id, !love);
+                                 //createfav(widget.campaingTitle, widget.campaignDiscrepcion, widget.campaignPhoto);
                                });
                              },
                              icon: Icon(
@@ -147,4 +150,26 @@ class Favorite {
   bool youLove(id) {
     return fav.contains(id);
   }
+}
+
+Future<Campaign> createfav(String title,String discr,String photo) async {
+  final response = await http.post(
+    Uri.parse('https://gist.githubusercontent.com/dilberkilic/0e3eef2630b327a81afd5c3234daa8a7/raw/9cd4f6fc9456e2ee9c611b85f4673b3ab2ee1e85/favorite.json'),
+    body: jsonEncode(<String, String>{
+      "campaingTitle":title,
+      "campaignDiscrepcion":discr,
+      "campaignPhoto":photo
+    }),
+  );
+  print("fgf");
+  if (response.statusCode == 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    return Campaign.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to create favorite.');
+  }
+
 }
