@@ -23,13 +23,13 @@ class campaignCard extends StatelessWidget {
                 campaign.campaignPhoto,
               )));
         },
-        child: cardView(campaign: campaign),
+        child: _cardView(campaign: campaign),
     );
   }
 }
 
-class cardView extends StatelessWidget {
-  const cardView({
+class _cardView extends StatelessWidget {
+  const _cardView({
     Key key,
     @required this.campaign,
   }) : super(key: key);

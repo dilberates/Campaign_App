@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kampanya/const/colors.dart';
 import 'package:mobx/mobx.dart';
 import '../model/campaign.dart';
 import '../store/campaign_store.dart';
 import '../components/campaignCard.dart';
-
-
 // ignore: must_be_immutable
 class CampaignList extends StatefulWidget {
   CampaignStore _store = CampaignStore();
@@ -76,7 +75,7 @@ class _failed extends StatelessWidget {
         children: <Widget>[
           Text(
             'Failed to load items.',
-            style: Theme.of(context).textTheme.headline1.copyWith(color: Colors.red),
+            style: Theme.of(context).textTheme.headline1.copyWith(color:MyColors().red),
           ),
           SizedBox(
             height: 10,

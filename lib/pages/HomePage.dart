@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kampanya/pages/campaignListPage.dart';
-import 'package:kampanya/constants.dart';
+import 'package:kampanya/const/LanguageItem.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text(MyConstans.appBarText),
+        title:Text(LanguageItem.appBarText),
       ),
       body: CampaignList(),
     );

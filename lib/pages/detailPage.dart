@@ -1,10 +1,8 @@
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:kampanya/const/colors.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:http/http.dart' as http;
-import 'package:kampanya/model/campaign.dart';
-import '../constants.dart';
+import '../const/LanguageItem.dart';
 
 class DetailCampaign extends StatefulWidget {
   final id;
@@ -18,6 +16,11 @@ class DetailCampaign extends StatefulWidget {
   @override
   State<DetailCampaign> createState() => _DetailCampaignState();
 
+  void _share(){
+    String url="https://www.isbank.com.tr/kampanyalar";
+    Share.share("${campaingTitle}\n ${campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
+  }
+
 }
 
 class _DetailCampaignState extends State<DetailCampaign> {
@@ -27,7 +30,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
      bool love = favorite.youLove(widget.id);
      return Scaffold(
          appBar: AppBar(
-           title: Text(MyConstans.appBarText),
+           title: Text(LanguageItem.appBarText),
          ),
          body: SingleChildScrollView(
            child: Container(
@@ -49,12 +52,11 @@ class _DetailCampaignState extends State<DetailCampaign> {
                        children: [
                          IconButton(
                              onPressed: () {
-                               String url="https://www.isbank.com.tr/kampanyalar";
-                               Share.share("${widget.campaingTitle}\n ${widget.campaignDiscrepcion} \n Başka kampanyalar için :${url} ");
+                              widget._share();
                              },
                              icon: Icon(
                                Icons.share,
-                               color: Colors.green,
+                               color: MyColors().green,
                              )
                          ),
 
@@ -62,12 +64,11 @@ class _DetailCampaignState extends State<DetailCampaign> {
                            onPressed: () {
                              setState(() {
                                favorite.favoriteCheck(widget.id, !love);
-                               //createfav(widget.campaingTitle, widget.campaignDiscrepcion, widget.campaignPhoto);
                              });
                            },
                            icon: Icon(
                                love ? Icons.favorite : Icons.favorite_border),
-                           color: Colors.red,
+                           color: MyColors().red,
                          )
                        ],
                      ),
@@ -122,7 +123,6 @@ class _titleWid extends StatelessWidget {
   }
 }
 
-
 class Favorite {
   final fav = [];
 
@@ -139,24 +139,4 @@ class Favorite {
   }
 }
 
-Future<Campaign> createfav(String title,String discr,String photo) async {
-  final response = await http.post(
-    Uri.parse('https://gist.githubusercontent.com/dilberkilic/0e3eef2630b327a81afd5c3234daa8a7/raw/9cd4f6fc9456e2ee9c611b85f4673b3ab2ee1e85/favorite.json'),
-    body: jsonEncode(<String, String>{
-      "campaingTitle":title,
-      "campaignDiscrepcion":discr,
-      "campaignPhoto":photo
-    }),
-  );
-  print("fgf");
-  if (response.statusCode == 201) {
-    // If the server did return a 201 CREATED response,
-    // then parse the JSON.
-    return Campaign.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create favorite.');
-  }
 
-}
