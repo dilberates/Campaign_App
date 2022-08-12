@@ -64,6 +64,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
                            onPressed: () {
                              setState(() {
                                favorite.favoriteCheck(widget.id, !love);
+                               _addMap(widget.id,widget.campaingTitle,widget.campaignDiscrepcion,widget.campaignPhoto);
                              });
                            },
                            icon: Icon(
@@ -81,6 +82,9 @@ class _DetailCampaignState extends State<DetailCampaign> {
    }
 
    SizedBox EmptyBox() => SizedBox(height: 30,);
+}
+
+void _addMap(id, String campaingTitle, String campaignDiscrepcion, String campaignPhoto) {
 }
 
 class _descWid extends StatelessWidget {
