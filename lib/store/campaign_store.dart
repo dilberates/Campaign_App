@@ -12,8 +12,11 @@ abstract class _CampaignStore with Store{
   ObservableFuture<List<Campaign>> campaignListFuture;
   
   @action
-  Future fetchCampaign()  {
-    campaignListFuture=  ObservableFuture(httpClient.getData("https://gist.githubusercontent.com/dilberkilic/7bab6b3c8dd7911ed21be92b7ed44004/raw/3eec6eb6b48894c2e93d799088da602dd3755718/campaign.json").then((campaign) => campaign));
+  Future fetchCampaign() {
+    campaignListFuture=  ObservableFuture(httpClient
+        .getData("https://gist.githubusercontent.com/dilberkilic/7bab6b3c8dd7911ed21be92b7ed44004/raw/3eec6eb6b48894c2e93d799088da602dd3755718/campaign.json")
+        .then((campaign)=> campaign ));
   }
+
   
 }

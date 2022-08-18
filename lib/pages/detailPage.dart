@@ -24,10 +24,9 @@ class DetailCampaign extends StatefulWidget {
 }
 
 class _DetailCampaignState extends State<DetailCampaign> {
-   Favorite favorite = Favorite();
    @override
    Widget build(BuildContext context) {
-     bool love = favorite.youLove(widget.id);
+     bool love = youLove(widget.id);
      return Scaffold(
          appBar: AppBar(
            title: Text(LanguageItem.appBarText),
@@ -63,7 +62,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
                          IconButton(
                            onPressed: () {
                              setState(() {
-                               favorite.favoriteCheck(widget.id, !love);
+                               favoriteCheck(widget.id, !love);
                              });
                            },
                            icon: Icon(
@@ -82,6 +81,7 @@ class _DetailCampaignState extends State<DetailCampaign> {
 
    SizedBox EmptyBox() => SizedBox(height: 30,);
 }
+
 
 class _descWid extends StatelessWidget {
   const _descWid({
@@ -123,7 +123,6 @@ class _titleWid extends StatelessWidget {
   }
 }
 
-class Favorite {
   final fav = [];
 
   void favoriteCheck(String id, bool boolLove) {
@@ -137,6 +136,6 @@ class Favorite {
   bool youLove(id) {
     return fav.contains(id);
   }
-}
+
 
 

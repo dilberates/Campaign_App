@@ -7,7 +7,7 @@ import 'package:kampanya/model/campaign.dart';
 class NetworkService {
   List<Campaign> campaigns = [];
 
-  Future<dynamic> getData(String url) async {
+  Future<List<Campaign>> getData(String url) async {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -15,7 +15,12 @@ class NetworkService {
         return Campaign.fromJson(json);
       }
       ).toList();
-      return campaigns;
+      if(campaigns is List){
+        return campaigns;
+      }else{
+        print("Empty list");
+      }
+
     } else {
       print("Error in URL");
     }
